@@ -4,7 +4,7 @@ Compilador de JavaScript a Lenguaje Propio hecho en Python
 Este compilador SOLO puede analizar los siguientes elementos:
 Identificadores
  keywords
- números (decimales, exponentes, hex/bin/oct)
+ números (enteros)
  strings simples (' y ")
  comentarios // y /* */,
  operadores (incluyendo multi-char)
