@@ -1,68 +1,94 @@
-import re
-from dataclasses import dataclass
-from typing import Iterator
+# Guarda este archivo como lexico_corregido.py
+import ply.lex as lex
 
-@dataclass
-class Token:
-    type: str
-    value: str
-    line: int
-    column: int
-
-KEYWORDS = {
-    "if", "else", "for", "while", "function", "return", "var", "let", "const"
+# -----------------------------
+# Palabras reservadas (sin cambios)
+# -----------------------------
+reserved = {
+    "if": "IF",
+    "else": "ELSE",
+    "for": "FOR",
+    "while": "WHILE",
+    "function": "FUNCTION",
+    "return": "RETURN",
+    "var": "VAR",
+    "let": "LET",
+    "const": "CONST"
 }
 
-token_specification = [
-    ("COMMENT",   r"//[^\n]*"),                # comentario de línea
-    ("MCOMMENT",  r"/\*[\s\S]*?\*/"),          # comentario multilínea (captura \n)
-    ("NEWLINE",   r"\n"),                      # salto de línea (para contar líneas)
-    ("SKIP",      r"[ \t\r]+"),                # espacios y tabs (ignorados)
-    ("ID",        r"[A-Za-z_$][A-Za-z0-9_$]*"),# identificadores
-    ("NUMBER",    r"\d+"),                     # enteros (solo dígitos)
-    # operadores lógicos (multi-char primero)
-    ("LOGIC_OP",  r"&&|\|\||!"),
-    # operadores aritméticos / asignación (multi-char primero)
-    ("ARITH_OP",  r"\+\+|--|\+|-|\*|/|%|="),
-    ("MISMATCH",  r"."),                       # cualquier otro carácter -> error
-    ("ASSIGN",    r"="),                         # operador de asignación
-]
+# -----------------------------
+# Lista de tokens CORREGIDA
+# -----------------------------
+tokens = [
+    'ID', 'NUMBER',
+    # --- Tokens de operadores separados por precedencia ---
+    'PLUS', 'MINUS', 'TIMES', 'DIVIDE', 'ASSIGN',
+    # --- Tokens agrupados (sin precedencia conflictiva) ---
+    'LPAREN', 'RPAREN', 'LBRACE', 'RBRACE',
+    'COMMA', 'SEMICOLON',
+    'LOGIC_OP',   # &&, ||
+    'REL_OP',     # ==, !=, <, >, <=, >=
+] + list(reserved.values())
 
-master_pattern = re.compile("|".join(f"(?P<{name}>{pattern})" for name, pattern in token_specification))
+# -----------------------------
+# Expresiones regulares CORREGIDAS
+# -----------------------------
+t_PLUS = r'\+'
+t_MINUS = r'-'
+t_TIMES = r'\*'
+t_DIVIDE = r'/'
+t_ASSIGN = r'='
+t_LPAREN = r'\('
+t_RPAREN = r'\)'
+t_LBRACE = r'\{'
+t_RBRACE = r'\}'
+t_COMMA = r','
+t_SEMICOLON = r';'
+t_LOGIC_OP = r'&&|\|\|'
+t_REL_OP = r'==|!=|<=|>=|<|>'
 
-def tokenize(code: str) -> Iterator[Token]:
-    line = 1
-    line_start = 0
-    for mo in master_pattern.finditer(code):
-        kind = mo.lastgroup
-        value = mo.group(kind)
-        start = mo.start()
-        column = start - line_start + 1
+# -----------------------------
+# Ignorar espacios, tabs y comentarios
+# -----------------------------
+t_ignore = ' \t\r'
+t_ignore_COMMENT = r'//.*'
+def t_ignore_MCOMMENT(t):
+    r'/\*[\s\S]*?\*/'
+    t.lexer.lineno += t.value.count('\n')
 
-        if kind == "NEWLINE":
-            line += 1
-            line_start = mo.end()
-            continue
-        elif kind == "SKIP" or kind == "COMMENT":
-            # espacios y comentarios de línea: ignorar
-            continue
-        elif kind == "MCOMMENT":
-            # comentario multilínea: actualizar líneas y line_start
-            n_newlines = value.count("\n")
-            if n_newlines:
-                line += n_newlines
-                # posicion del último salto dentro del comentario
-                last_nl = value.rfind("\n")
-                line_start = mo.start() + last_nl + 1
-            continue
-        elif kind == "ID":
-            if value in KEYWORDS:
-                kind = "KEYWORD"
-        elif kind == "MISMATCH":
-            raise SyntaxError(f"Caracter inesperado {value!r} en línea {line} columna {column}")
+# -----------------------------
+# Identificadores y palabras reservadas
+# -----------------------------
+def t_ID(t):
+    r'[a-zA-Z_][a-zA-Z0-9_]*'
+    t.type = reserved.get(t.value, 'ID')
+    return t
 
-        yield Token(kind, value, line, column)
+# -----------------------------
+# Números
+# -----------------------------
+def t_NUMBER(t):
+    r'\d+'
+    t.value = int(t.value)
+    return t
 
-def lex_to_list(code: str):
-    """Devuelve la lista de tokens a partir de un string de código JS."""
-    return list(tokenize(code))
+# -----------------------------
+# Contador de líneas
+# -----------------------------
+def t_newline(t):
+    r'\n+'
+    t.lexer.lineno += len(t.value)
+
+# -----------------------------
+# Manejo de errores
+# -----------------------------
+def t_error(t):
+    print(f"❌ Caracter ilegal '{t.value[0]}' en línea {t.lexer.lineno}")
+    t.lexer.skip(1)
+
+# -----------------------------
+# Construcción del lexer
+# -----------------------------
+lexer = lex.lex()
+
+
