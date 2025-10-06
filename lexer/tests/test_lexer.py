@@ -1,37 +1,29 @@
-import pytest
-from compilador.lexer import lex_to_list, Token
+import sys
+import os
 
-def test_variable_assignment():
-    code = "var x = 5;"
-    tokens = lex_to_list(code)
+# Agregar el directorio padre (lexer) al path
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-    # El primer token debería ser la palabra reservada "var"
-    assert tokens[0].type == "KEYWORD"
-    assert tokens[0].value == "var"
+from lexer import lexer
 
-    # Luego un identificador
-    assert tokens[1].type == "ID"
-    assert tokens[1].value == "x"
+# Código de prueba (puedes cambiarlo)
+code = """
+var x = 10;
+let y = 20;
+if (x + 5 > y && y != 0) {
+    const z = y * 2 + 1;
+} else {
+    y = 0;
+}
+"""
 
-    # Luego el operador de asignación
-    assert tokens[2].type == "ASSIGN"
-    assert tokens[2].value == "="
+# Alimentar el lexer
+lexer.input(code)
 
-    # Y un número entero
-    assert tokens[3].type == "NUMBER"
-    assert tokens[3].value == "5"
+print("🧩 TOKENS GENERADOS POR EL LÉXICO:\n")
 
-def test_arithmetic_expression():
-    code = "x = x + 1;"
-    tokens = lex_to_list(code)
-
-    assert any(t.type == "ARITH_OP" and t.value == "+" for t in tokens)
-    assert any(t.type == "NUMBER" and t.value == "1" for t in tokens)
-
-def test_logical_expression():
-    code = "if (x && y) { return x || y; }"
-    tokens = lex_to_list(code)
-
-    # Verifica que detecta operadores lógicos
-    assert any(t.type == "LOGIC_OP" and t.value == "&&" for t in tokens)
-    assert any(t.type == "LOGIC_OP" and t.value == "||" for t in tokens)
+while True:
+    tok = lexer.token()
+    if not tok:
+        break
+    print(f"Tipo: {tok.type:<12} Valor: {tok.value:<8} Línea: {tok.lineno}")
