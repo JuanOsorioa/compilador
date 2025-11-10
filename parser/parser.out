@@ -1,0 +1,1219 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    COMMA
+    FOR
+    FUNCTION
+    RETURN
+    WHILE
+
+Grammar
+
+Rule 0     S' -> program
+Rule 1     program -> statement_list
+Rule 2     statement_list -> statement
+Rule 3     statement_list -> statement_list statement
+Rule 4     statement -> assignment_stmt
+Rule 5     statement -> expression_stmt
+Rule 6     statement -> if_stmt
+Rule 7     statement -> block_stmt
+Rule 8     expression_stmt -> expression SEMICOLON
+Rule 9     assignment_stmt -> VAR ID ASSIGN expression SEMICOLON
+Rule 10    assignment_stmt -> LET ID ASSIGN expression SEMICOLON
+Rule 11    assignment_stmt -> CONST ID ASSIGN expression SEMICOLON
+Rule 12    assignment_stmt -> ID ASSIGN expression SEMICOLON
+Rule 13    block_stmt -> LBRACE statement_list RBRACE
+Rule 14    if_stmt -> IF LPAREN expression RPAREN statement
+Rule 15    if_stmt -> IF LPAREN expression RPAREN statement ELSE statement
+Rule 16    expression -> expression PLUS expression
+Rule 17    expression -> expression MINUS expression
+Rule 18    expression -> expression TIMES expression
+Rule 19    expression -> expression DIVIDE expression
+Rule 20    expression -> expression REL_OP expression
+Rule 21    expression -> expression LOGIC_OP expression
+Rule 22    expression -> LPAREN expression RPAREN
+Rule 23    expression -> NUMBER
+Rule 24    expression -> ID
+
+Terminals, with rules where they appear
+
+ASSIGN               : 9 10 11 12
+COMMA                : 
+CONST                : 11
+DIVIDE               : 19
+ELSE                 : 15
+FOR                  : 
+FUNCTION             : 
+ID                   : 9 10 11 12 24
+IF                   : 14 15
+LBRACE               : 13
+LET                  : 10
+LOGIC_OP             : 21
+LPAREN               : 14 15 22
+MINUS                : 17
+NUMBER               : 23
+PLUS                 : 16
+RBRACE               : 13
+REL_OP               : 20
+RETURN               : 
+RPAREN               : 14 15 22
+SEMICOLON            : 8 9 10 11 12
+TIMES                : 18
+VAR                  : 9
+WHILE                : 
+error                : 
+
+Nonterminals, with rules where they appear
+
+assignment_stmt      : 4
+block_stmt           : 7
+expression           : 8 9 10 11 12 14 15 16 16 17 17 18 18 19 19 20 20 21 21 22
+expression_stmt      : 5
+if_stmt              : 6
+program              : 0
+statement            : 2 3 14 15 15
+statement_list       : 1 3 13
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . program
+    (1) program -> . statement_list
+    (2) statement_list -> . statement
+    (3) statement_list -> . statement_list statement
+    (4) statement -> . assignment_stmt
+    (5) statement -> . expression_stmt
+    (6) statement -> . if_stmt
+    (7) statement -> . block_stmt
+    (9) assignment_stmt -> . VAR ID ASSIGN expression SEMICOLON
+    (10) assignment_stmt -> . LET ID ASSIGN expression SEMICOLON
+    (11) assignment_stmt -> . CONST ID ASSIGN expression SEMICOLON
+    (12) assignment_stmt -> . ID ASSIGN expression SEMICOLON
+    (8) expression_stmt -> . expression SEMICOLON
+    (14) if_stmt -> . IF LPAREN expression RPAREN statement
+    (15) if_stmt -> . IF LPAREN expression RPAREN statement ELSE statement
+    (13) block_stmt -> . LBRACE statement_list RBRACE
+    (16) expression -> . expression PLUS expression
+    (17) expression -> . expression MINUS expression
+    (18) expression -> . expression TIMES expression
+    (19) expression -> . expression DIVIDE expression
+    (20) expression -> . expression REL_OP expression
+    (21) expression -> . expression LOGIC_OP expression
+    (22) expression -> . LPAREN expression RPAREN
+    (23) expression -> . NUMBER
+    (24) expression -> . ID
+
+    VAR             shift and go to state 8
+    LET             shift and go to state 11
+    CONST           shift and go to state 12
+    ID              shift and go to state 9
+    IF              shift and go to state 13
+    LBRACE          shift and go to state 15
+    LPAREN          shift and go to state 14
+    NUMBER          shift and go to state 16
+
+    program                        shift and go to state 1
+    statement_list                 shift and go to state 2
+    statement                      shift and go to state 3
+    assignment_stmt                shift and go to state 4
+    expression_stmt                shift and go to state 5
+    if_stmt                        shift and go to state 6
+    block_stmt                     shift and go to state 7
+    expression                     shift and go to state 10
+
+state 1
+
+    (0) S' -> program .
+
+
+
+state 2
+
+    (1) program -> statement_list .
+    (3) statement_list -> statement_list . statement
+    (4) statement -> . assignment_stmt
+    (5) statement -> . expression_stmt
+    (6) statement -> . if_stmt
+    (7) statement -> . block_stmt
+    (9) assignment_stmt -> . VAR ID ASSIGN expression SEMICOLON
+    (10) assignment_stmt -> . LET ID ASSIGN expression SEMICOLON
+    (11) assignment_stmt -> . CONST ID ASSIGN expression SEMICOLON
+    (12) assignment_stmt -> . ID ASSIGN expression SEMICOLON
+    (8) expression_stmt -> . expression SEMICOLON
+    (14) if_stmt -> . IF LPAREN expression RPAREN statement
+    (15) if_stmt -> . IF LPAREN expression RPAREN statement ELSE statement
+    (13) block_stmt -> . LBRACE statement_list RBRACE
+    (16) expression -> . expression PLUS expression
+    (17) expression -> . expression MINUS expression
+    (18) expression -> . expression TIMES expression
+    (19) expression -> . expression DIVIDE expression
+    (20) expression -> . expression REL_OP expression
+    (21) expression -> . expression LOGIC_OP expression
+    (22) expression -> . LPAREN expression RPAREN
+    (23) expression -> . NUMBER
+    (24) expression -> . ID
+
+    $end            reduce using rule 1 (program -> statement_list .)
+    VAR             shift and go to state 8
+    LET             shift and go to state 11
+    CONST           shift and go to state 12
+    ID              shift and go to state 9
+    IF              shift and go to state 13
+    LBRACE          shift and go to state 15
+    LPAREN          shift and go to state 14
+    NUMBER          shift and go to state 16
+
+    statement                      shift and go to state 17
+    assignment_stmt                shift and go to state 4
+    expression_stmt                shift and go to state 5
+    if_stmt                        shift and go to state 6
+    block_stmt                     shift and go to state 7
+    expression                     shift and go to state 10
+
+state 3
+
+    (2) statement_list -> statement .
+
+    VAR             reduce using rule 2 (statement_list -> statement .)
+    LET             reduce using rule 2 (statement_list -> statement .)
+    CONST           reduce using rule 2 (statement_list -> statement .)
+    ID              reduce using rule 2 (statement_list -> statement .)
+    IF              reduce using rule 2 (statement_list -> statement .)
+    LBRACE          reduce using rule 2 (statement_list -> statement .)
+    LPAREN          reduce using rule 2 (statement_list -> statement .)
+    NUMBER          reduce using rule 2 (statement_list -> statement .)
+    $end            reduce using rule 2 (statement_list -> statement .)
+    RBRACE          reduce using rule 2 (statement_list -> statement .)
+
+
+state 4
+
+    (4) statement -> assignment_stmt .
+
+    VAR             reduce using rule 4 (statement -> assignment_stmt .)
+    LET             reduce using rule 4 (statement -> assignment_stmt .)
+    CONST           reduce using rule 4 (statement -> assignment_stmt .)
+    ID              reduce using rule 4 (statement -> assignment_stmt .)
+    IF              reduce using rule 4 (statement -> assignment_stmt .)
+    LBRACE          reduce using rule 4 (statement -> assignment_stmt .)
+    LPAREN          reduce using rule 4 (statement -> assignment_stmt .)
+    NUMBER          reduce using rule 4 (statement -> assignment_stmt .)
+    $end            reduce using rule 4 (statement -> assignment_stmt .)
+    RBRACE          reduce using rule 4 (statement -> assignment_stmt .)
+    ELSE            reduce using rule 4 (statement -> assignment_stmt .)
+
+
+state 5
+
+    (5) statement -> expression_stmt .
+
+    VAR             reduce using rule 5 (statement -> expression_stmt .)
+    LET             reduce using rule 5 (statement -> expression_stmt .)
+    CONST           reduce using rule 5 (statement -> expression_stmt .)
+    ID              reduce using rule 5 (statement -> expression_stmt .)
+    IF              reduce using rule 5 (statement -> expression_stmt .)
+    LBRACE          reduce using rule 5 (statement -> expression_stmt .)
+    LPAREN          reduce using rule 5 (statement -> expression_stmt .)
+    NUMBER          reduce using rule 5 (statement -> expression_stmt .)
+    $end            reduce using rule 5 (statement -> expression_stmt .)
+    RBRACE          reduce using rule 5 (statement -> expression_stmt .)
+    ELSE            reduce using rule 5 (statement -> expression_stmt .)
+
+
+state 6
+
+    (6) statement -> if_stmt .
+
+    VAR             reduce using rule 6 (statement -> if_stmt .)
+    LET             reduce using rule 6 (statement -> if_stmt .)
+    CONST           reduce using rule 6 (statement -> if_stmt .)
+    ID              reduce using rule 6 (statement -> if_stmt .)
+    IF              reduce using rule 6 (statement -> if_stmt .)
+    LBRACE          reduce using rule 6 (statement -> if_stmt .)
+    LPAREN          reduce using rule 6 (statement -> if_stmt .)
+    NUMBER          reduce using rule 6 (statement -> if_stmt .)
+    $end            reduce using rule 6 (statement -> if_stmt .)
+    RBRACE          reduce using rule 6 (statement -> if_stmt .)
+    ELSE            reduce using rule 6 (statement -> if_stmt .)
+
+
+state 7
+
+    (7) statement -> block_stmt .
+
+    VAR             reduce using rule 7 (statement -> block_stmt .)
+    LET             reduce using rule 7 (statement -> block_stmt .)
+    CONST           reduce using rule 7 (statement -> block_stmt .)
+    ID              reduce using rule 7 (statement -> block_stmt .)
+    IF              reduce using rule 7 (statement -> block_stmt .)
+    LBRACE          reduce using rule 7 (statement -> block_stmt .)
+    LPAREN          reduce using rule 7 (statement -> block_stmt .)
+    NUMBER          reduce using rule 7 (statement -> block_stmt .)
+    $end            reduce using rule 7 (statement -> block_stmt .)
+    RBRACE          reduce using rule 7 (statement -> block_stmt .)
+    ELSE            reduce using rule 7 (statement -> block_stmt .)
+
+
+state 8
+
+    (9) assignment_stmt -> VAR . ID ASSIGN expression SEMICOLON
+
+    ID              shift and go to state 18
+
+
+state 9
+
+    (12) assignment_stmt -> ID . ASSIGN expression SEMICOLON
+    (24) expression -> ID .
+
+    ASSIGN          shift and go to state 19
+    SEMICOLON       reduce using rule 24 (expression -> ID .)
+    PLUS            reduce using rule 24 (expression -> ID .)
+    MINUS           reduce using rule 24 (expression -> ID .)
+    TIMES           reduce using rule 24 (expression -> ID .)
+    DIVIDE          reduce using rule 24 (expression -> ID .)
+    REL_OP          reduce using rule 24 (expression -> ID .)
+    LOGIC_OP        reduce using rule 24 (expression -> ID .)
+
+
+state 10
+
+    (8) expression_stmt -> expression . SEMICOLON
+    (16) expression -> expression . PLUS expression
+    (17) expression -> expression . MINUS expression
+    (18) expression -> expression . TIMES expression
+    (19) expression -> expression . DIVIDE expression
+    (20) expression -> expression . REL_OP expression
+    (21) expression -> expression . LOGIC_OP expression
+
+    SEMICOLON       shift and go to state 20
+    PLUS            shift and go to state 21
+    MINUS           shift and go to state 22
+    TIMES           shift and go to state 23
+    DIVIDE          shift and go to state 24
+    REL_OP          shift and go to state 25
+    LOGIC_OP        shift and go to state 26
+
+
+state 11
+
+    (10) assignment_stmt -> LET . ID ASSIGN expression SEMICOLON
+
+    ID              shift and go to state 27
+
+
+state 12
+
+    (11) assignment_stmt -> CONST . ID ASSIGN expression SEMICOLON
+
+    ID              shift and go to state 28
+
+
+state 13
+
+    (14) if_stmt -> IF . LPAREN expression RPAREN statement
+    (15) if_stmt -> IF . LPAREN expression RPAREN statement ELSE statement
+
+    LPAREN          shift and go to state 29
+
+
+state 14
+
+    (22) expression -> LPAREN . expression RPAREN
+    (16) expression -> . expression PLUS expression
+    (17) expression -> . expression MINUS expression
+    (18) expression -> . expression TIMES expression
+    (19) expression -> . expression DIVIDE expression
+    (20) expression -> . expression REL_OP expression
+    (21) expression -> . expression LOGIC_OP expression
+    (22) expression -> . LPAREN expression RPAREN
+    (23) expression -> . NUMBER
+    (24) expression -> . ID
+
+    LPAREN          shift and go to state 14
+    NUMBER          shift and go to state 16
+    ID              shift and go to state 31
+
+    expression                     shift and go to state 30
+
+state 15
+
+    (13) block_stmt -> LBRACE . statement_list RBRACE
+    (2) statement_list -> . statement
+    (3) statement_list -> . statement_list statement
+    (4) statement -> . assignment_stmt
+    (5) statement -> . expression_stmt
+    (6) statement -> . if_stmt
+    (7) statement -> . block_stmt
+    (9) assignment_stmt -> . VAR ID ASSIGN expression SEMICOLON
+    (10) assignment_stmt -> . LET ID ASSIGN expression SEMICOLON
+    (11) assignment_stmt -> . CONST ID ASSIGN expression SEMICOLON
+    (12) assignment_stmt -> . ID ASSIGN expression SEMICOLON
+    (8) expression_stmt -> . expression SEMICOLON
+    (14) if_stmt -> . IF LPAREN expression RPAREN statement
+    (15) if_stmt -> . IF LPAREN expression RPAREN statement ELSE statement
+    (13) block_stmt -> . LBRACE statement_list RBRACE
+    (16) expression -> . expression PLUS expression
+    (17) expression -> . expression MINUS expression
+    (18) expression -> . expression TIMES expression
+    (19) expression -> . expression DIVIDE expression
+    (20) expression -> . expression REL_OP expression
+    (21) expression -> . expression LOGIC_OP expression
+    (22) expression -> . LPAREN expression RPAREN
+    (23) expression -> . NUMBER
+    (24) expression -> . ID
+
+    VAR             shift and go to state 8
+    LET             shift and go to state 11
+    CONST           shift and go to state 12
+    ID              shift and go to state 9
+    IF              shift and go to state 13
+    LBRACE          shift and go to state 15
+    LPAREN          shift and go to state 14
+    NUMBER          shift and go to state 16
+
+    statement_list                 shift and go to state 32
+    statement                      shift and go to state 3
+    assignment_stmt                shift and go to state 4
+    expression_stmt                shift and go to state 5
+    if_stmt                        shift and go to state 6
+    block_stmt                     shift and go to state 7
+    expression                     shift and go to state 10
+
+state 16
+
+    (23) expression -> NUMBER .
+
+    SEMICOLON       reduce using rule 23 (expression -> NUMBER .)
+    PLUS            reduce using rule 23 (expression -> NUMBER .)
+    MINUS           reduce using rule 23 (expression -> NUMBER .)
+    TIMES           reduce using rule 23 (expression -> NUMBER .)
+    DIVIDE          reduce using rule 23 (expression -> NUMBER .)
+    REL_OP          reduce using rule 23 (expression -> NUMBER .)
+    LOGIC_OP        reduce using rule 23 (expression -> NUMBER .)
+    RPAREN          reduce using rule 23 (expression -> NUMBER .)
+
+
+state 17
+
+    (3) statement_list -> statement_list statement .
+
+    VAR             reduce using rule 3 (statement_list -> statement_list statement .)
+    LET             reduce using rule 3 (statement_list -> statement_list statement .)
+    CONST           reduce using rule 3 (statement_list -> statement_list statement .)
+    ID              reduce using rule 3 (statement_list -> statement_list statement .)
+    IF              reduce using rule 3 (statement_list -> statement_list statement .)
+    LBRACE          reduce using rule 3 (statement_list -> statement_list statement .)
+    LPAREN          reduce using rule 3 (statement_list -> statement_list statement .)
+    NUMBER          reduce using rule 3 (statement_list -> statement_list statement .)
+    $end            reduce using rule 3 (statement_list -> statement_list statement .)
+    RBRACE          reduce using rule 3 (statement_list -> statement_list statement .)
+
+
+state 18
+
+    (9) assignment_stmt -> VAR ID . ASSIGN expression SEMICOLON
+
+    ASSIGN          shift and go to state 33
+
+
+state 19
+
+    (12) assignment_stmt -> ID ASSIGN . expression SEMICOLON
+    (16) expression -> . expression PLUS expression
+    (17) expression -> . expression MINUS expression
+    (18) expression -> . expression TIMES expression
+    (19) expression -> . expression DIVIDE expression
+    (20) expression -> . expression REL_OP expression
+    (21) expression -> . expression LOGIC_OP expression
+    (22) expression -> . LPAREN expression RPAREN
+    (23) expression -> . NUMBER
+    (24) expression -> . ID
+
+    LPAREN          shift and go to state 14
+    NUMBER          shift and go to state 16
+    ID              shift and go to state 31
+
+    expression                     shift and go to state 34
+
+state 20
+
+    (8) expression_stmt -> expression SEMICOLON .
+
+    VAR             reduce using rule 8 (expression_stmt -> expression SEMICOLON .)
+    LET             reduce using rule 8 (expression_stmt -> expression SEMICOLON .)
+    CONST           reduce using rule 8 (expression_stmt -> expression SEMICOLON .)
+    ID              reduce using rule 8 (expression_stmt -> expression SEMICOLON .)
+    IF              reduce using rule 8 (expression_stmt -> expression SEMICOLON .)
+    LBRACE          reduce using rule 8 (expression_stmt -> expression SEMICOLON .)
+    LPAREN          reduce using rule 8 (expression_stmt -> expression SEMICOLON .)
+    NUMBER          reduce using rule 8 (expression_stmt -> expression SEMICOLON .)
+    $end            reduce using rule 8 (expression_stmt -> expression SEMICOLON .)
+    RBRACE          reduce using rule 8 (expression_stmt -> expression SEMICOLON .)
+    ELSE            reduce using rule 8 (expression_stmt -> expression SEMICOLON .)
+
+
+state 21
+
+    (16) expression -> expression PLUS . expression
+    (16) expression -> . expression PLUS expression
+    (17) expression -> . expression MINUS expression
+    (18) expression -> . expression TIMES expression
+    (19) expression -> . expression DIVIDE expression
+    (20) expression -> . expression REL_OP expression
+    (21) expression -> . expression LOGIC_OP expression
+    (22) expression -> . LPAREN expression RPAREN
+    (23) expression -> . NUMBER
+    (24) expression -> . ID
+
+    LPAREN          shift and go to state 14
+    NUMBER          shift and go to state 16
+    ID              shift and go to state 31
+
+    expression                     shift and go to state 35
+
+state 22
+
+    (17) expression -> expression MINUS . expression
+    (16) expression -> . expression PLUS expression
+    (17) expression -> . expression MINUS expression
+    (18) expression -> . expression TIMES expression
+    (19) expression -> . expression DIVIDE expression
+    (20) expression -> . expression REL_OP expression
+    (21) expression -> . expression LOGIC_OP expression
+    (22) expression -> . LPAREN expression RPAREN
+    (23) expression -> . NUMBER
+    (24) expression -> . ID
+
+    LPAREN          shift and go to state 14
+    NUMBER          shift and go to state 16
+    ID              shift and go to state 31
+
+    expression                     shift and go to state 36
+
+state 23
+
+    (18) expression -> expression TIMES . expression
+    (16) expression -> . expression PLUS expression
+    (17) expression -> . expression MINUS expression
+    (18) expression -> . expression TIMES expression
+    (19) expression -> . expression DIVIDE expression
+    (20) expression -> . expression REL_OP expression
+    (21) expression -> . expression LOGIC_OP expression
+    (22) expression -> . LPAREN expression RPAREN
+    (23) expression -> . NUMBER
+    (24) expression -> . ID
+
+    LPAREN          shift and go to state 14
+    NUMBER          shift and go to state 16
+    ID              shift and go to state 31
+
+    expression                     shift and go to state 37
+
+state 24
+
+    (19) expression -> expression DIVIDE . expression
+    (16) expression -> . expression PLUS expression
+    (17) expression -> . expression MINUS expression
+    (18) expression -> . expression TIMES expression
+    (19) expression -> . expression DIVIDE expression
+    (20) expression -> . expression REL_OP expression
+    (21) expression -> . expression LOGIC_OP expression
+    (22) expression -> . LPAREN expression RPAREN
+    (23) expression -> . NUMBER
+    (24) expression -> . ID
+
+    LPAREN          shift and go to state 14
+    NUMBER          shift and go to state 16
+    ID              shift and go to state 31
+
+    expression                     shift and go to state 38
+
+state 25
+
+    (20) expression -> expression REL_OP . expression
+    (16) expression -> . expression PLUS expression
+    (17) expression -> . expression MINUS expression
+    (18) expression -> . expression TIMES expression
+    (19) expression -> . expression DIVIDE expression
+    (20) expression -> . expression REL_OP expression
+    (21) expression -> . expression LOGIC_OP expression
+    (22) expression -> . LPAREN expression RPAREN
+    (23) expression -> . NUMBER
+    (24) expression -> . ID
+
+    LPAREN          shift and go to state 14
+    NUMBER          shift and go to state 16
+    ID              shift and go to state 31
+
+    expression                     shift and go to state 39
+
+state 26
+
+    (21) expression -> expression LOGIC_OP . expression
+    (16) expression -> . expression PLUS expression
+    (17) expression -> . expression MINUS expression
+    (18) expression -> . expression TIMES expression
+    (19) expression -> . expression DIVIDE expression
+    (20) expression -> . expression REL_OP expression
+    (21) expression -> . expression LOGIC_OP expression
+    (22) expression -> . LPAREN expression RPAREN
+    (23) expression -> . NUMBER
+    (24) expression -> . ID
+
+    LPAREN          shift and go to state 14
+    NUMBER          shift and go to state 16
+    ID              shift and go to state 31
+
+    expression                     shift and go to state 40
+
+state 27
+
+    (10) assignment_stmt -> LET ID . ASSIGN expression SEMICOLON
+
+    ASSIGN          shift and go to state 41
+
+
+state 28
+
+    (11) assignment_stmt -> CONST ID . ASSIGN expression SEMICOLON
+
+    ASSIGN          shift and go to state 42
+
+
+state 29
+
+    (14) if_stmt -> IF LPAREN . expression RPAREN statement
+    (15) if_stmt -> IF LPAREN . expression RPAREN statement ELSE statement
+    (16) expression -> . expression PLUS expression
+    (17) expression -> . expression MINUS expression
+    (18) expression -> . expression TIMES expression
+    (19) expression -> . expression DIVIDE expression
+    (20) expression -> . expression REL_OP expression
+    (21) expression -> . expression LOGIC_OP expression
+    (22) expression -> . LPAREN expression RPAREN
+    (23) expression -> . NUMBER
+    (24) expression -> . ID
+
+    LPAREN          shift and go to state 14
+    NUMBER          shift and go to state 16
+    ID              shift and go to state 31
+
+    expression                     shift and go to state 43
+
+state 30
+
+    (22) expression -> LPAREN expression . RPAREN
+    (16) expression -> expression . PLUS expression
+    (17) expression -> expression . MINUS expression
+    (18) expression -> expression . TIMES expression
+    (19) expression -> expression . DIVIDE expression
+    (20) expression -> expression . REL_OP expression
+    (21) expression -> expression . LOGIC_OP expression
+
+    RPAREN          shift and go to state 44
+    PLUS            shift and go to state 21
+    MINUS           shift and go to state 22
+    TIMES           shift and go to state 23
+    DIVIDE          shift and go to state 24
+    REL_OP          shift and go to state 25
+    LOGIC_OP        shift and go to state 26
+
+
+state 31
+
+    (24) expression -> ID .
+
+    RPAREN          reduce using rule 24 (expression -> ID .)
+    PLUS            reduce using rule 24 (expression -> ID .)
+    MINUS           reduce using rule 24 (expression -> ID .)
+    TIMES           reduce using rule 24 (expression -> ID .)
+    DIVIDE          reduce using rule 24 (expression -> ID .)
+    REL_OP          reduce using rule 24 (expression -> ID .)
+    LOGIC_OP        reduce using rule 24 (expression -> ID .)
+    SEMICOLON       reduce using rule 24 (expression -> ID .)
+
+
+state 32
+
+    (13) block_stmt -> LBRACE statement_list . RBRACE
+    (3) statement_list -> statement_list . statement
+    (4) statement -> . assignment_stmt
+    (5) statement -> . expression_stmt
+    (6) statement -> . if_stmt
+    (7) statement -> . block_stmt
+    (9) assignment_stmt -> . VAR ID ASSIGN expression SEMICOLON
+    (10) assignment_stmt -> . LET ID ASSIGN expression SEMICOLON
+    (11) assignment_stmt -> . CONST ID ASSIGN expression SEMICOLON
+    (12) assignment_stmt -> . ID ASSIGN expression SEMICOLON
+    (8) expression_stmt -> . expression SEMICOLON
+    (14) if_stmt -> . IF LPAREN expression RPAREN statement
+    (15) if_stmt -> . IF LPAREN expression RPAREN statement ELSE statement
+    (13) block_stmt -> . LBRACE statement_list RBRACE
+    (16) expression -> . expression PLUS expression
+    (17) expression -> . expression MINUS expression
+    (18) expression -> . expression TIMES expression
+    (19) expression -> . expression DIVIDE expression
+    (20) expression -> . expression REL_OP expression
+    (21) expression -> . expression LOGIC_OP expression
+    (22) expression -> . LPAREN expression RPAREN
+    (23) expression -> . NUMBER
+    (24) expression -> . ID
+
+    RBRACE          shift and go to state 45
+    VAR             shift and go to state 8
+    LET             shift and go to state 11
+    CONST           shift and go to state 12
+    ID              shift and go to state 9
+    IF              shift and go to state 13
+    LBRACE          shift and go to state 15
+    LPAREN          shift and go to state 14
+    NUMBER          shift and go to state 16
+
+    statement                      shift and go to state 17
+    assignment_stmt                shift and go to state 4
+    expression_stmt                shift and go to state 5
+    if_stmt                        shift and go to state 6
+    block_stmt                     shift and go to state 7
+    expression                     shift and go to state 10
+
+state 33
+
+    (9) assignment_stmt -> VAR ID ASSIGN . expression SEMICOLON
+    (16) expression -> . expression PLUS expression
+    (17) expression -> . expression MINUS expression
+    (18) expression -> . expression TIMES expression
+    (19) expression -> . expression DIVIDE expression
+    (20) expression -> . expression REL_OP expression
+    (21) expression -> . expression LOGIC_OP expression
+    (22) expression -> . LPAREN expression RPAREN
+    (23) expression -> . NUMBER
+    (24) expression -> . ID
+
+    LPAREN          shift and go to state 14
+    NUMBER          shift and go to state 16
+    ID              shift and go to state 31
+
+    expression                     shift and go to state 46
+
+state 34
+
+    (12) assignment_stmt -> ID ASSIGN expression . SEMICOLON
+    (16) expression -> expression . PLUS expression
+    (17) expression -> expression . MINUS expression
+    (18) expression -> expression . TIMES expression
+    (19) expression -> expression . DIVIDE expression
+    (20) expression -> expression . REL_OP expression
+    (21) expression -> expression . LOGIC_OP expression
+
+    SEMICOLON       shift and go to state 47
+    PLUS            shift and go to state 21
+    MINUS           shift and go to state 22
+    TIMES           shift and go to state 23
+    DIVIDE          shift and go to state 24
+    REL_OP          shift and go to state 25
+    LOGIC_OP        shift and go to state 26
+
+
+state 35
+
+    (16) expression -> expression PLUS expression .
+    (16) expression -> expression . PLUS expression
+    (17) expression -> expression . MINUS expression
+    (18) expression -> expression . TIMES expression
+    (19) expression -> expression . DIVIDE expression
+    (20) expression -> expression . REL_OP expression
+    (21) expression -> expression . LOGIC_OP expression
+
+    SEMICOLON       reduce using rule 16 (expression -> expression PLUS expression .)
+    PLUS            reduce using rule 16 (expression -> expression PLUS expression .)
+    MINUS           reduce using rule 16 (expression -> expression PLUS expression .)
+    REL_OP          reduce using rule 16 (expression -> expression PLUS expression .)
+    LOGIC_OP        reduce using rule 16 (expression -> expression PLUS expression .)
+    RPAREN          reduce using rule 16 (expression -> expression PLUS expression .)
+    TIMES           shift and go to state 23
+    DIVIDE          shift and go to state 24
+
+  ! TIMES           [ reduce using rule 16 (expression -> expression PLUS expression .) ]
+  ! DIVIDE          [ reduce using rule 16 (expression -> expression PLUS expression .) ]
+  ! PLUS            [ shift and go to state 21 ]
+  ! MINUS           [ shift and go to state 22 ]
+  ! REL_OP          [ shift and go to state 25 ]
+  ! LOGIC_OP        [ shift and go to state 26 ]
+
+
+state 36
+
+    (17) expression -> expression MINUS expression .
+    (16) expression -> expression . PLUS expression
+    (17) expression -> expression . MINUS expression
+    (18) expression -> expression . TIMES expression
+    (19) expression -> expression . DIVIDE expression
+    (20) expression -> expression . REL_OP expression
+    (21) expression -> expression . LOGIC_OP expression
+
+    SEMICOLON       reduce using rule 17 (expression -> expression MINUS expression .)
+    PLUS            reduce using rule 17 (expression -> expression MINUS expression .)
+    MINUS           reduce using rule 17 (expression -> expression MINUS expression .)
+    REL_OP          reduce using rule 17 (expression -> expression MINUS expression .)
+    LOGIC_OP        reduce using rule 17 (expression -> expression MINUS expression .)
+    RPAREN          reduce using rule 17 (expression -> expression MINUS expression .)
+    TIMES           shift and go to state 23
+    DIVIDE          shift and go to state 24
+
+  ! TIMES           [ reduce using rule 17 (expression -> expression MINUS expression .) ]
+  ! DIVIDE          [ reduce using rule 17 (expression -> expression MINUS expression .) ]
+  ! PLUS            [ shift and go to state 21 ]
+  ! MINUS           [ shift and go to state 22 ]
+  ! REL_OP          [ shift and go to state 25 ]
+  ! LOGIC_OP        [ shift and go to state 26 ]
+
+
+state 37
+
+    (18) expression -> expression TIMES expression .
+    (16) expression -> expression . PLUS expression
+    (17) expression -> expression . MINUS expression
+    (18) expression -> expression . TIMES expression
+    (19) expression -> expression . DIVIDE expression
+    (20) expression -> expression . REL_OP expression
+    (21) expression -> expression . LOGIC_OP expression
+
+    SEMICOLON       reduce using rule 18 (expression -> expression TIMES expression .)
+    PLUS            reduce using rule 18 (expression -> expression TIMES expression .)
+    MINUS           reduce using rule 18 (expression -> expression TIMES expression .)
+    TIMES           reduce using rule 18 (expression -> expression TIMES expression .)
+    DIVIDE          reduce using rule 18 (expression -> expression TIMES expression .)
+    REL_OP          reduce using rule 18 (expression -> expression TIMES expression .)
+    LOGIC_OP        reduce using rule 18 (expression -> expression TIMES expression .)
+    RPAREN          reduce using rule 18 (expression -> expression TIMES expression .)
+
+  ! PLUS            [ shift and go to state 21 ]
+  ! MINUS           [ shift and go to state 22 ]
+  ! TIMES           [ shift and go to state 23 ]
+  ! DIVIDE          [ shift and go to state 24 ]
+  ! REL_OP          [ shift and go to state 25 ]
+  ! LOGIC_OP        [ shift and go to state 26 ]
+
+
+state 38
+
+    (19) expression -> expression DIVIDE expression .
+    (16) expression -> expression . PLUS expression
+    (17) expression -> expression . MINUS expression
+    (18) expression -> expression . TIMES expression
+    (19) expression -> expression . DIVIDE expression
+    (20) expression -> expression . REL_OP expression
+    (21) expression -> expression . LOGIC_OP expression
+
+    SEMICOLON       reduce using rule 19 (expression -> expression DIVIDE expression .)
+    PLUS            reduce using rule 19 (expression -> expression DIVIDE expression .)
+    MINUS           reduce using rule 19 (expression -> expression DIVIDE expression .)
+    TIMES           reduce using rule 19 (expression -> expression DIVIDE expression .)
+    DIVIDE          reduce using rule 19 (expression -> expression DIVIDE expression .)
+    REL_OP          reduce using rule 19 (expression -> expression DIVIDE expression .)
+    LOGIC_OP        reduce using rule 19 (expression -> expression DIVIDE expression .)
+    RPAREN          reduce using rule 19 (expression -> expression DIVIDE expression .)
+
+  ! PLUS            [ shift and go to state 21 ]
+  ! MINUS           [ shift and go to state 22 ]
+  ! TIMES           [ shift and go to state 23 ]
+  ! DIVIDE          [ shift and go to state 24 ]
+  ! REL_OP          [ shift and go to state 25 ]
+  ! LOGIC_OP        [ shift and go to state 26 ]
+
+
+state 39
+
+    (20) expression -> expression REL_OP expression .
+    (16) expression -> expression . PLUS expression
+    (17) expression -> expression . MINUS expression
+    (18) expression -> expression . TIMES expression
+    (19) expression -> expression . DIVIDE expression
+    (20) expression -> expression . REL_OP expression
+    (21) expression -> expression . LOGIC_OP expression
+
+    SEMICOLON       reduce using rule 20 (expression -> expression REL_OP expression .)
+    REL_OP          reduce using rule 20 (expression -> expression REL_OP expression .)
+    LOGIC_OP        reduce using rule 20 (expression -> expression REL_OP expression .)
+    RPAREN          reduce using rule 20 (expression -> expression REL_OP expression .)
+    PLUS            shift and go to state 21
+    MINUS           shift and go to state 22
+    TIMES           shift and go to state 23
+    DIVIDE          shift and go to state 24
+
+  ! PLUS            [ reduce using rule 20 (expression -> expression REL_OP expression .) ]
+  ! MINUS           [ reduce using rule 20 (expression -> expression REL_OP expression .) ]
+  ! TIMES           [ reduce using rule 20 (expression -> expression REL_OP expression .) ]
+  ! DIVIDE          [ reduce using rule 20 (expression -> expression REL_OP expression .) ]
+  ! REL_OP          [ shift and go to state 25 ]
+  ! LOGIC_OP        [ shift and go to state 26 ]
+
+
+state 40
+
+    (21) expression -> expression LOGIC_OP expression .
+    (16) expression -> expression . PLUS expression
+    (17) expression -> expression . MINUS expression
+    (18) expression -> expression . TIMES expression
+    (19) expression -> expression . DIVIDE expression
+    (20) expression -> expression . REL_OP expression
+    (21) expression -> expression . LOGIC_OP expression
+
+    SEMICOLON       reduce using rule 21 (expression -> expression LOGIC_OP expression .)
+    LOGIC_OP        reduce using rule 21 (expression -> expression LOGIC_OP expression .)
+    RPAREN          reduce using rule 21 (expression -> expression LOGIC_OP expression .)
+    PLUS            shift and go to state 21
+    MINUS           shift and go to state 22
+    TIMES           shift and go to state 23
+    DIVIDE          shift and go to state 24
+    REL_OP          shift and go to state 25
+
+  ! PLUS            [ reduce using rule 21 (expression -> expression LOGIC_OP expression .) ]
+  ! MINUS           [ reduce using rule 21 (expression -> expression LOGIC_OP expression .) ]
+  ! TIMES           [ reduce using rule 21 (expression -> expression LOGIC_OP expression .) ]
+  ! DIVIDE          [ reduce using rule 21 (expression -> expression LOGIC_OP expression .) ]
+  ! REL_OP          [ reduce using rule 21 (expression -> expression LOGIC_OP expression .) ]
+  ! LOGIC_OP        [ shift and go to state 26 ]
+
+
+state 41
+
+    (10) assignment_stmt -> LET ID ASSIGN . expression SEMICOLON
+    (16) expression -> . expression PLUS expression
+    (17) expression -> . expression MINUS expression
+    (18) expression -> . expression TIMES expression
+    (19) expression -> . expression DIVIDE expression
+    (20) expression -> . expression REL_OP expression
+    (21) expression -> . expression LOGIC_OP expression
+    (22) expression -> . LPAREN expression RPAREN
+    (23) expression -> . NUMBER
+    (24) expression -> . ID
+
+    LPAREN          shift and go to state 14
+    NUMBER          shift and go to state 16
+    ID              shift and go to state 31
+
+    expression                     shift and go to state 48
+
+state 42
+
+    (11) assignment_stmt -> CONST ID ASSIGN . expression SEMICOLON
+    (16) expression -> . expression PLUS expression
+    (17) expression -> . expression MINUS expression
+    (18) expression -> . expression TIMES expression
+    (19) expression -> . expression DIVIDE expression
+    (20) expression -> . expression REL_OP expression
+    (21) expression -> . expression LOGIC_OP expression
+    (22) expression -> . LPAREN expression RPAREN
+    (23) expression -> . NUMBER
+    (24) expression -> . ID
+
+    LPAREN          shift and go to state 14
+    NUMBER          shift and go to state 16
+    ID              shift and go to state 31
+
+    expression                     shift and go to state 49
+
+state 43
+
+    (14) if_stmt -> IF LPAREN expression . RPAREN statement
+    (15) if_stmt -> IF LPAREN expression . RPAREN statement ELSE statement
+    (16) expression -> expression . PLUS expression
+    (17) expression -> expression . MINUS expression
+    (18) expression -> expression . TIMES expression
+    (19) expression -> expression . DIVIDE expression
+    (20) expression -> expression . REL_OP expression
+    (21) expression -> expression . LOGIC_OP expression
+
+    RPAREN          shift and go to state 50
+    PLUS            shift and go to state 21
+    MINUS           shift and go to state 22
+    TIMES           shift and go to state 23
+    DIVIDE          shift and go to state 24
+    REL_OP          shift and go to state 25
+    LOGIC_OP        shift and go to state 26
+
+
+state 44
+
+    (22) expression -> LPAREN expression RPAREN .
+
+    SEMICOLON       reduce using rule 22 (expression -> LPAREN expression RPAREN .)
+    PLUS            reduce using rule 22 (expression -> LPAREN expression RPAREN .)
+    MINUS           reduce using rule 22 (expression -> LPAREN expression RPAREN .)
+    TIMES           reduce using rule 22 (expression -> LPAREN expression RPAREN .)
+    DIVIDE          reduce using rule 22 (expression -> LPAREN expression RPAREN .)
+    REL_OP          reduce using rule 22 (expression -> LPAREN expression RPAREN .)
+    LOGIC_OP        reduce using rule 22 (expression -> LPAREN expression RPAREN .)
+    RPAREN          reduce using rule 22 (expression -> LPAREN expression RPAREN .)
+
+
+state 45
+
+    (13) block_stmt -> LBRACE statement_list RBRACE .
+
+    VAR             reduce using rule 13 (block_stmt -> LBRACE statement_list RBRACE .)
+    LET             reduce using rule 13 (block_stmt -> LBRACE statement_list RBRACE .)
+    CONST           reduce using rule 13 (block_stmt -> LBRACE statement_list RBRACE .)
+    ID              reduce using rule 13 (block_stmt -> LBRACE statement_list RBRACE .)
+    IF              reduce using rule 13 (block_stmt -> LBRACE statement_list RBRACE .)
+    LBRACE          reduce using rule 13 (block_stmt -> LBRACE statement_list RBRACE .)
+    LPAREN          reduce using rule 13 (block_stmt -> LBRACE statement_list RBRACE .)
+    NUMBER          reduce using rule 13 (block_stmt -> LBRACE statement_list RBRACE .)
+    $end            reduce using rule 13 (block_stmt -> LBRACE statement_list RBRACE .)
+    RBRACE          reduce using rule 13 (block_stmt -> LBRACE statement_list RBRACE .)
+    ELSE            reduce using rule 13 (block_stmt -> LBRACE statement_list RBRACE .)
+
+
+state 46
+
+    (9) assignment_stmt -> VAR ID ASSIGN expression . SEMICOLON
+    (16) expression -> expression . PLUS expression
+    (17) expression -> expression . MINUS expression
+    (18) expression -> expression . TIMES expression
+    (19) expression -> expression . DIVIDE expression
+    (20) expression -> expression . REL_OP expression
+    (21) expression -> expression . LOGIC_OP expression
+
+    SEMICOLON       shift and go to state 51
+    PLUS            shift and go to state 21
+    MINUS           shift and go to state 22
+    TIMES           shift and go to state 23
+    DIVIDE          shift and go to state 24
+    REL_OP          shift and go to state 25
+    LOGIC_OP        shift and go to state 26
+
+
+state 47
+
+    (12) assignment_stmt -> ID ASSIGN expression SEMICOLON .
+
+    VAR             reduce using rule 12 (assignment_stmt -> ID ASSIGN expression SEMICOLON .)
+    LET             reduce using rule 12 (assignment_stmt -> ID ASSIGN expression SEMICOLON .)
+    CONST           reduce using rule 12 (assignment_stmt -> ID ASSIGN expression SEMICOLON .)
+    ID              reduce using rule 12 (assignment_stmt -> ID ASSIGN expression SEMICOLON .)
+    IF              reduce using rule 12 (assignment_stmt -> ID ASSIGN expression SEMICOLON .)
+    LBRACE          reduce using rule 12 (assignment_stmt -> ID ASSIGN expression SEMICOLON .)
+    LPAREN          reduce using rule 12 (assignment_stmt -> ID ASSIGN expression SEMICOLON .)
+    NUMBER          reduce using rule 12 (assignment_stmt -> ID ASSIGN expression SEMICOLON .)
+    $end            reduce using rule 12 (assignment_stmt -> ID ASSIGN expression SEMICOLON .)
+    RBRACE          reduce using rule 12 (assignment_stmt -> ID ASSIGN expression SEMICOLON .)
+    ELSE            reduce using rule 12 (assignment_stmt -> ID ASSIGN expression SEMICOLON .)
+
+
+state 48
+
+    (10) assignment_stmt -> LET ID ASSIGN expression . SEMICOLON
+    (16) expression -> expression . PLUS expression
+    (17) expression -> expression . MINUS expression
+    (18) expression -> expression . TIMES expression
+    (19) expression -> expression . DIVIDE expression
+    (20) expression -> expression . REL_OP expression
+    (21) expression -> expression . LOGIC_OP expression
+
+    SEMICOLON       shift and go to state 52
+    PLUS            shift and go to state 21
+    MINUS           shift and go to state 22
+    TIMES           shift and go to state 23
+    DIVIDE          shift and go to state 24
+    REL_OP          shift and go to state 25
+    LOGIC_OP        shift and go to state 26
+
+
+state 49
+
+    (11) assignment_stmt -> CONST ID ASSIGN expression . SEMICOLON
+    (16) expression -> expression . PLUS expression
+    (17) expression -> expression . MINUS expression
+    (18) expression -> expression . TIMES expression
+    (19) expression -> expression . DIVIDE expression
+    (20) expression -> expression . REL_OP expression
+    (21) expression -> expression . LOGIC_OP expression
+
+    SEMICOLON       shift and go to state 53
+    PLUS            shift and go to state 21
+    MINUS           shift and go to state 22
+    TIMES           shift and go to state 23
+    DIVIDE          shift and go to state 24
+    REL_OP          shift and go to state 25
+    LOGIC_OP        shift and go to state 26
+
+
+state 50
+
+    (14) if_stmt -> IF LPAREN expression RPAREN . statement
+    (15) if_stmt -> IF LPAREN expression RPAREN . statement ELSE statement
+    (4) statement -> . assignment_stmt
+    (5) statement -> . expression_stmt
+    (6) statement -> . if_stmt
+    (7) statement -> . block_stmt
+    (9) assignment_stmt -> . VAR ID ASSIGN expression SEMICOLON
+    (10) assignment_stmt -> . LET ID ASSIGN expression SEMICOLON
+    (11) assignment_stmt -> . CONST ID ASSIGN expression SEMICOLON
+    (12) assignment_stmt -> . ID ASSIGN expression SEMICOLON
+    (8) expression_stmt -> . expression SEMICOLON
+    (14) if_stmt -> . IF LPAREN expression RPAREN statement
+    (15) if_stmt -> . IF LPAREN expression RPAREN statement ELSE statement
+    (13) block_stmt -> . LBRACE statement_list RBRACE
+    (16) expression -> . expression PLUS expression
+    (17) expression -> . expression MINUS expression
+    (18) expression -> . expression TIMES expression
+    (19) expression -> . expression DIVIDE expression
+    (20) expression -> . expression REL_OP expression
+    (21) expression -> . expression LOGIC_OP expression
+    (22) expression -> . LPAREN expression RPAREN
+    (23) expression -> . NUMBER
+    (24) expression -> . ID
+
+    VAR             shift and go to state 8
+    LET             shift and go to state 11
+    CONST           shift and go to state 12
+    ID              shift and go to state 9
+    IF              shift and go to state 13
+    LBRACE          shift and go to state 15
+    LPAREN          shift and go to state 14
+    NUMBER          shift and go to state 16
+
+    expression                     shift and go to state 10
+    statement                      shift and go to state 54
+    assignment_stmt                shift and go to state 4
+    expression_stmt                shift and go to state 5
+    if_stmt                        shift and go to state 6
+    block_stmt                     shift and go to state 7
+
+state 51
+
+    (9) assignment_stmt -> VAR ID ASSIGN expression SEMICOLON .
+
+    VAR             reduce using rule 9 (assignment_stmt -> VAR ID ASSIGN expression SEMICOLON .)
+    LET             reduce using rule 9 (assignment_stmt -> VAR ID ASSIGN expression SEMICOLON .)
+    CONST           reduce using rule 9 (assignment_stmt -> VAR ID ASSIGN expression SEMICOLON .)
+    ID              reduce using rule 9 (assignment_stmt -> VAR ID ASSIGN expression SEMICOLON .)
+    IF              reduce using rule 9 (assignment_stmt -> VAR ID ASSIGN expression SEMICOLON .)
+    LBRACE          reduce using rule 9 (assignment_stmt -> VAR ID ASSIGN expression SEMICOLON .)
+    LPAREN          reduce using rule 9 (assignment_stmt -> VAR ID ASSIGN expression SEMICOLON .)
+    NUMBER          reduce using rule 9 (assignment_stmt -> VAR ID ASSIGN expression SEMICOLON .)
+    $end            reduce using rule 9 (assignment_stmt -> VAR ID ASSIGN expression SEMICOLON .)
+    RBRACE          reduce using rule 9 (assignment_stmt -> VAR ID ASSIGN expression SEMICOLON .)
+    ELSE            reduce using rule 9 (assignment_stmt -> VAR ID ASSIGN expression SEMICOLON .)
+
+
+state 52
+
+    (10) assignment_stmt -> LET ID ASSIGN expression SEMICOLON .
+
+    VAR             reduce using rule 10 (assignment_stmt -> LET ID ASSIGN expression SEMICOLON .)
+    LET             reduce using rule 10 (assignment_stmt -> LET ID ASSIGN expression SEMICOLON .)
+    CONST           reduce using rule 10 (assignment_stmt -> LET ID ASSIGN expression SEMICOLON .)
+    ID              reduce using rule 10 (assignment_stmt -> LET ID ASSIGN expression SEMICOLON .)
+    IF              reduce using rule 10 (assignment_stmt -> LET ID ASSIGN expression SEMICOLON .)
+    LBRACE          reduce using rule 10 (assignment_stmt -> LET ID ASSIGN expression SEMICOLON .)
+    LPAREN          reduce using rule 10 (assignment_stmt -> LET ID ASSIGN expression SEMICOLON .)
+    NUMBER          reduce using rule 10 (assignment_stmt -> LET ID ASSIGN expression SEMICOLON .)
+    $end            reduce using rule 10 (assignment_stmt -> LET ID ASSIGN expression SEMICOLON .)
+    RBRACE          reduce using rule 10 (assignment_stmt -> LET ID ASSIGN expression SEMICOLON .)
+    ELSE            reduce using rule 10 (assignment_stmt -> LET ID ASSIGN expression SEMICOLON .)
+
+
+state 53
+
+    (11) assignment_stmt -> CONST ID ASSIGN expression SEMICOLON .
+
+    VAR             reduce using rule 11 (assignment_stmt -> CONST ID ASSIGN expression SEMICOLON .)
+    LET             reduce using rule 11 (assignment_stmt -> CONST ID ASSIGN expression SEMICOLON .)
+    CONST           reduce using rule 11 (assignment_stmt -> CONST ID ASSIGN expression SEMICOLON .)
+    ID              reduce using rule 11 (assignment_stmt -> CONST ID ASSIGN expression SEMICOLON .)
+    IF              reduce using rule 11 (assignment_stmt -> CONST ID ASSIGN expression SEMICOLON .)
+    LBRACE          reduce using rule 11 (assignment_stmt -> CONST ID ASSIGN expression SEMICOLON .)
+    LPAREN          reduce using rule 11 (assignment_stmt -> CONST ID ASSIGN expression SEMICOLON .)
+    NUMBER          reduce using rule 11 (assignment_stmt -> CONST ID ASSIGN expression SEMICOLON .)
+    $end            reduce using rule 11 (assignment_stmt -> CONST ID ASSIGN expression SEMICOLON .)
+    RBRACE          reduce using rule 11 (assignment_stmt -> CONST ID ASSIGN expression SEMICOLON .)
+    ELSE            reduce using rule 11 (assignment_stmt -> CONST ID ASSIGN expression SEMICOLON .)
+
+
+state 54
+
+    (14) if_stmt -> IF LPAREN expression RPAREN statement .
+    (15) if_stmt -> IF LPAREN expression RPAREN statement . ELSE statement
+
+  ! shift/reduce conflict for ELSE resolved as shift
+    VAR             reduce using rule 14 (if_stmt -> IF LPAREN expression RPAREN statement .)
+    LET             reduce using rule 14 (if_stmt -> IF LPAREN expression RPAREN statement .)
+    CONST           reduce using rule 14 (if_stmt -> IF LPAREN expression RPAREN statement .)
+    ID              reduce using rule 14 (if_stmt -> IF LPAREN expression RPAREN statement .)
+    IF              reduce using rule 14 (if_stmt -> IF LPAREN expression RPAREN statement .)
+    LBRACE          reduce using rule 14 (if_stmt -> IF LPAREN expression RPAREN statement .)
+    LPAREN          reduce using rule 14 (if_stmt -> IF LPAREN expression RPAREN statement .)
+    NUMBER          reduce using rule 14 (if_stmt -> IF LPAREN expression RPAREN statement .)
+    $end            reduce using rule 14 (if_stmt -> IF LPAREN expression RPAREN statement .)
+    RBRACE          reduce using rule 14 (if_stmt -> IF LPAREN expression RPAREN statement .)
+    ELSE            shift and go to state 55
+
+  ! ELSE            [ reduce using rule 14 (if_stmt -> IF LPAREN expression RPAREN statement .) ]
+
+
+state 55
+
+    (15) if_stmt -> IF LPAREN expression RPAREN statement ELSE . statement
+    (4) statement -> . assignment_stmt
+    (5) statement -> . expression_stmt
+    (6) statement -> . if_stmt
+    (7) statement -> . block_stmt
+    (9) assignment_stmt -> . VAR ID ASSIGN expression SEMICOLON
+    (10) assignment_stmt -> . LET ID ASSIGN expression SEMICOLON
+    (11) assignment_stmt -> . CONST ID ASSIGN expression SEMICOLON
+    (12) assignment_stmt -> . ID ASSIGN expression SEMICOLON
+    (8) expression_stmt -> . expression SEMICOLON
+    (14) if_stmt -> . IF LPAREN expression RPAREN statement
+    (15) if_stmt -> . IF LPAREN expression RPAREN statement ELSE statement
+    (13) block_stmt -> . LBRACE statement_list RBRACE
+    (16) expression -> . expression PLUS expression
+    (17) expression -> . expression MINUS expression
+    (18) expression -> . expression TIMES expression
+    (19) expression -> . expression DIVIDE expression
+    (20) expression -> . expression REL_OP expression
+    (21) expression -> . expression LOGIC_OP expression
+    (22) expression -> . LPAREN expression RPAREN
+    (23) expression -> . NUMBER
+    (24) expression -> . ID
+
+    VAR             shift and go to state 8
+    LET             shift and go to state 11
+    CONST           shift and go to state 12
+    ID              shift and go to state 9
+    IF              shift and go to state 13
+    LBRACE          shift and go to state 15
+    LPAREN          shift and go to state 14
+    NUMBER          shift and go to state 16
+
+    expression                     shift and go to state 10
+    statement                      shift and go to state 56
+    assignment_stmt                shift and go to state 4
+    expression_stmt                shift and go to state 5
+    if_stmt                        shift and go to state 6
+    block_stmt                     shift and go to state 7
+
+state 56
+
+    (15) if_stmt -> IF LPAREN expression RPAREN statement ELSE statement .
+
+    VAR             reduce using rule 15 (if_stmt -> IF LPAREN expression RPAREN statement ELSE statement .)
+    LET             reduce using rule 15 (if_stmt -> IF LPAREN expression RPAREN statement ELSE statement .)
+    CONST           reduce using rule 15 (if_stmt -> IF LPAREN expression RPAREN statement ELSE statement .)
+    ID              reduce using rule 15 (if_stmt -> IF LPAREN expression RPAREN statement ELSE statement .)
+    IF              reduce using rule 15 (if_stmt -> IF LPAREN expression RPAREN statement ELSE statement .)
+    LBRACE          reduce using rule 15 (if_stmt -> IF LPAREN expression RPAREN statement ELSE statement .)
+    LPAREN          reduce using rule 15 (if_stmt -> IF LPAREN expression RPAREN statement ELSE statement .)
+    NUMBER          reduce using rule 15 (if_stmt -> IF LPAREN expression RPAREN statement ELSE statement .)
+    $end            reduce using rule 15 (if_stmt -> IF LPAREN expression RPAREN statement ELSE statement .)
+    RBRACE          reduce using rule 15 (if_stmt -> IF LPAREN expression RPAREN statement ELSE statement .)
+    ELSE            reduce using rule 15 (if_stmt -> IF LPAREN expression RPAREN statement ELSE statement .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for ELSE in state 54 resolved as shift
